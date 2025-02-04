@@ -181,9 +181,9 @@
  
    // setting up wifi phy and channel using helpers
    WifiHelper wifi;
-   wifi.SetStandard (WIFI_PHY_STANDARD_80211b);
+   wifi.SetStandard (WIFI_STANDARD_80211b);
  
-   YansWifiPhyHelper wifiPhy =  YansWifiPhyHelper::Default ();
+   YansWifiPhyHelper wifiPhy =  YansWifiPhyHelper::CreateDefault ();
    YansWifiChannelHelper wifiChannel;
    wifiChannel.SetPropagationDelay ("ns3::ConstantSpeedPropagationDelayModel");
    wifiChannel.AddPropagationLoss ("ns3::FriisPropagationLossModel");
@@ -223,7 +223,7 @@
    mobilityAdhoc.SetPositionAllocator (taPositionAlloc);
    mobilityAdhoc.Install (adhocNodes);
    streamIndex += mobilityAdhoc.AssignStreams (adhocNodes, streamIndex);
-   NS_UNUSED (streamIndex); // From this point, streamIndex is unused
+   (void)streamIndex; // From this point, streamIndex is unused
  
    AodvHelper aodv;
    OlsrHelper olsr;
